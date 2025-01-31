@@ -16,10 +16,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={` antialiased bg-darkBrown`}
-      >
-        <Navbar />
+      <body>
+        <Navbar/>
         {children}
       </body>
     </html>
