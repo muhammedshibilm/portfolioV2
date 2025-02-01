@@ -1,0 +1,22 @@
+[
+    {
+        "name": "About",
+        "description": "Learn more about my journey, skills, and experiences.",
+        "href": "/me"
+    },
+    {
+        "name": "Blog",
+        "description": "Read my thoughts on technology and development.",
+        "href": "/blog"
+    },
+    {
+        "name": "Projects",
+        "description": "Explore my latest projects and contributions.",
+        "href": "/projects"
+    },
+    {
+        "name": "Contact",
+        "description": "Get in touch with me for collaborations or opportunities.",
+        "href": "/contact"
+    }
+]

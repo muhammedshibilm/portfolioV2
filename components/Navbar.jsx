@@ -42,7 +42,7 @@ export default function Navbar() {
   ]
 
   return (
-    <nav className="text-beige fixed z-50 w-screen ">
+    <nav className="text-beige fixed z-50 w-screen text-md font-semibold ">
       {/* above mobile  */}
       <div className="w-full hidden md:grid place-items-center">
         <ul className="flex  gap-10 pt-5">
