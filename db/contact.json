@@ -1,0 +1,32 @@
+[
+    {
+        "name": "LinkedIn",
+        "description": "Connect on LinkedIn",
+        "username": "muhammedshibilm",
+        "url" : "https://www.linkedin.com/in/muhammedshibilm",
+        "color": "blue"
+    },
+
+     {
+        "name": "Twitter",
+        "description": "Connect on X",
+        "username": "muhammedshibilm_",
+        "url" : "https://twitter.com/muhammedshibil_",
+        "color": "black"
+    },
+    
+    {
+        "name": "GitHub",
+        "description": "Follow on GitHUb",
+        "username": "muhammedshibilm",
+        "url" : "https://github.com/muhammedshibilm",
+        "color": "white"
+    },
+    {
+        "name": "Mail",
+        "description": "Send an email",
+        "username": "muhammedshibilm321@gmail.com",
+        "url" : "mailto:muhammedshibilm321@gmail.com",
+        "color": "red"
+    }
+]

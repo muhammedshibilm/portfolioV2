@@ -38,7 +38,7 @@ export default function Navbar() {
     { "name": "Me", "target": "/me" },
     { "name": "Blog", "target": "/blog" },
     { "name": "Projects", "target": "/projects" },
-    { "name": "Contact", "target": "/contacts" },
+    { "name": "Contact", "target": "/contact" },
   ]
 
   return (

@@ -10,7 +10,7 @@ import Image from "next/image";
 export default function Page() {
   return (
     <main className="min-h-screen container px-2  pt-20 md:mx-auto lg:px-[100px]">
-      <h1 className="text-4xl font-extrabold text-oliveGreen pb-10">
+      <h1 className=" text-4xl md:text-5xl font-extrabold text-oliveGreen pb-10">
         About me
       </h1>
       <div className="flex justify-center items-center">
