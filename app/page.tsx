@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 import exploredata from "../db/exploredata.json";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
   const containerVariants = {
@@ -25,7 +26,10 @@ export default function Home() {
   
 
   return (
-    <div className="relative top-8   text-beige z-10 container mx-auto ">
+   <>
+   <Navbar />
+
+   <div className="relative top-8   text-beige z-10 container mx-auto ">
       <main className="grid place-items-center   h-[95vh]">
         <div className="w-72 md:w-96  flex flex-col justify-center items-center">
           <Image src={profile} alt="avathar" />
@@ -97,5 +101,6 @@ export default function Home() {
         </div>
       </section>
     </div>
+   </>
   );
 }

@@ -1,4 +1,4 @@
-import { NextRequest , NextResponse } from "next/server";
+import {  NextResponse } from "next/server";
 import { DateUtils } from "@/utils/dateUtils";
 
 import Parser from "rss-parser";
@@ -17,7 +17,7 @@ interface Post{
 }
 
 
-export   async function GET(req: NextRequest) {
+export   async function GET() {
 
  
 

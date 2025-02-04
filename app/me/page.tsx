@@ -6,10 +6,13 @@ import Development from "../../public/Development.svg";
 import Design from "../../public/Desgin.svg";
 import Cyber from "../../public/Cyber.png";
 import Image from "next/image";
+import Navbar from "@/components/Navbar";
 
 export default function Page() {
   return (
-    <main className="min-h-screen container px-2  pt-20 md:mx-auto lg:px-[100px]">
+    <>
+    <Navbar/>
+    <main className="min-h-screen container px-4  pt-20 md:mx-auto lg:px-[100px]">
       <h1 className=" text-4xl md:text-5xl font-extrabold text-oliveGreen pb-10">
         About me
       </h1>
@@ -169,5 +172,6 @@ export default function Page() {
 
       </div>
     </main>
+    </>
   );
 }

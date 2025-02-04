@@ -32,7 +32,7 @@ export default function Cards() {
 
         hidden: {
             opacity: 0,
-            y: 30,  
+            y: 100,  
             scale: 0.98, 
             transition: {
                 duration: 0.4,
@@ -47,13 +47,15 @@ export default function Cards() {
             const [isHovered, setIsHovered] = useState(false);
 
             return (
-                <Link href={items.url} key={index}>
-                    <motion.span
-                        variants={variants}
-                        initial="hidden"
-                        whileInView="visible"
-                        custom={index}
-                    >
+                <motion.span
+                key={index}
+                variants={variants}
+                initial="hidden"
+                whileInView="visible"
+                custom={index}
+            >
+                <Link href={items.url} >
+               
                         <motion.div
                             onHoverStart={() => setIsHovered(true)}
                             onHoverEnd={() => setIsHovered(false)}
@@ -108,8 +110,10 @@ export default function Cards() {
                             </div>
                             <p className="text-beige ">{items.description}</p>
                         </motion.div>
-                    </motion.span>
+                   
                 </Link>
+
+                </motion.span>
             )
         })
     );
