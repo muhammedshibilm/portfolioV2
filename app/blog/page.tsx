@@ -36,7 +36,7 @@ export default function Page() {
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="py-28 container mx-auto px-10 md:px-[100px] space-y-5"
+      className="py-28 container mx-auto px-5   md:px-[100px] space-y-5"
     >
       <h1 className="text-5xl font-bold text-oliveGreen">My Blogs</h1>
       <p className="text-beige text-xl">
@@ -63,10 +63,10 @@ export default function Page() {
                 whileHover={{ scale: 1.02, transition: { duration: 0.1 } }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 key={index}
-                className="hover:shadow-xl hover:shadow-deepBrown"
+                className="hover:shadow-xl  hover:shadow-deepBrown "
               >
                 <Link href={item.link}>
-                  <div className="space-y-5 rounded-lg">
+                  <div className="space-y-5 rounded-xl p-4 hover:cursor-pointer">
                     <Image
                       src={item.image}
                       alt={item.title}
@@ -74,12 +74,12 @@ export default function Page() {
                       height={300}
                       className="rounded-lg"
                     />
-                    <div className="flex gap-5 items-center">
+                    <div className="flex gap-5 px-2 items-center">
                       <SlCalender />
                       <p>{item.pubDate}</p>
                     </div>
-                    <h1 className="text-xl font-bold">{item.title}</h1>
-                    <h4 className="text-md text-clip">{item.description}</h4>
+                    <h1 className="text-xl font-bold px-2">{item.title}</h1>
+                    <h4 className="text-md text-clip px-2">{item.description}</h4>
                   </div>
                 </Link>
               </motion.span>

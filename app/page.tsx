@@ -8,7 +8,7 @@ import { FaArrowRight } from "react-icons/fa";
 import exploredata from "../db/exploredata.json";
 import Navbar from "../components/Navbar";
 
-export default function Home() {
+export default function Page() {
   const containerVariants = {
     initial: { y: 0 },
     hover: { y: -5, transition: { duration: 0.3 } },
@@ -72,16 +72,18 @@ export default function Home() {
                 variants={containerVariants}
                 initial="initial"
                 whileHover="hover"
-                className="bg-darkBrown rounded-lg h-[50vh] cursor-pointer"
+                className="bg-darkBrown rounded-lg  cursor-pointer w-full"
               >
 
+                  <div className="text-2xl text-center font-extrabold h-full py-32 ">
                 <motion.h1
                   variants={textContainer}
-                  className="text-2xl font-extrabold h-3/4 flex justify-center items-center"
+                  
                 >
                   {item.name}
                 </motion.h1>
-                <div className="bg-oliveGreen h-1/4 py-2 px-6">
+                </div>
+                <div className="bg-oliveGreen mt-0  py-2 px-6">
                   <motion.h1
                     variants={colorContiner}
                     className="flex justify-between font-bold text-lg"

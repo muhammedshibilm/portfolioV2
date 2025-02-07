@@ -1,0 +1,15 @@
+[
+  {
+    "Backend": ["FastApi", "Django", "NodeJs", "REST"]
+  },
+  {
+    "Frontend": [  "Vue","NextJs", "TypeScript",   "Tailwind","Framer motion"
+    ]
+  },
+  {
+    "Database": ["PostgreSQL", "Mongodb", "MySQL"]
+  },
+  {
+    "Tools": ["Linux", "Git", "Namp"]
+  }
+]

@@ -1,18 +1,18 @@
 "use client";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { motion } from "framer-motion";
-import RotatingDiv from "../../components/RotatingDiv";
 import Development from "../../public/Development.svg";
 import Design from "../../public/Desgin.svg";
 import Cyber from "../../public/Cyber.png";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
+import TechExpCard from "@/components/TechExpCard";
 
 export default function Page() {
   return (
     <>
     <Navbar/>
-    <main className="min-h-screen container px-4  pt-20 md:mx-auto lg:px-[100px]">
+    <main className="min-h-screen container px-4   pt-20 md:mx-auto lg:px-[100px]">
       <h1 className=" text-4xl md:text-5xl font-extrabold text-oliveGreen pb-10">
         About me
       </h1>
@@ -62,16 +62,16 @@ export default function Page() {
         technology started with a curiosity about how things work under the
         hood, which led me to specialize in backend development.
       </motion.p>
-      <h1 className="mt-10 text-2xl font-semibold text-oliveGreen">
+      <h1 className="mt-10 text-3xl font-semibold text-oliveGreen">
         Professional Experience
       </h1>
       {/* Professional exp cards */}
       <div className="pl-5 border-l-4 border-deepBrown relative mt-20">
         <div className="w-4 h-4 rounded-full bg-oliveGreen absolute -left-3 -top-4"></div>
-        <div className="shadow-lg shadow-deepBrown px-6 py-5 space-y-2 rounded-lg">
+        <div className="shadow-lg shadow-deepBrown px-6 pb-5 space-y-2 rounded-lg">
           <div className="flex flex-col md:flex-row  md:justify-between ">
-            <div>
-              <h1 className="text-lg font-bold">Backend & Frontend Engineer</h1>
+            <div className="py-2">
+              <h1 className="text-xl py-2 font-bold">Backend & Frontend Engineer</h1>
               <h2 className="text-md text-oliveGreen">Celestia</h2>
             </div>
             <p className="text-xs text-beige">2024 - Present </p>
@@ -104,13 +104,15 @@ export default function Page() {
         </div>
       </div>
 
-      <h1 className="mt-10  text-center text-4xl text-oliveGreen font-bold relative">
-        Technical Expertise
+      {/* Technical Expertise */}
+      <h1 className="mt-10 text-3xl font-semibold text-oliveGreen">
+      Technical Expertise
       </h1>
-      <RotatingDiv />
-
-      <div className="mt-10  mx-4 space-y-20 ">
-        <h1 className="text-4xl font-bold text-oliveGreen">
+       <div className="grid grid-cols-1 mt-5  md:grid-cols-2 gap-10 place-items-center">
+       <TechExpCard/>
+       </div>
+      <div className="mt-10  space-y-20 ">
+        <h1 className="text-3xl font-bold text-oliveGreen">
           I can help you with ...
         </h1>
         {/* datas */}

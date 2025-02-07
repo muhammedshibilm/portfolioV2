@@ -1,10 +1,12 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import Cards from "../../components/Cards";
 export default function Page() {
   return (
     <>
     <Navbar/>
-    <div className="py-28 container px-5 mx-auto md:px-[100px] space-y-10 ">
+    <div className="py-28 container px-4  mx-auto md:px-[100px] space-y-10 ">
       <h1 className="text-5xl font-bold text-oliveGreen">Let&apos;s Connect</h1>
       <p className="text-beige text-xl md:text-2xl">
         Feel free to reach out through any of these platforms. I&apos;m always
