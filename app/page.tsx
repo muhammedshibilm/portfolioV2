@@ -29,7 +29,7 @@ export default function Page() {
    <>
    <Navbar />
 
-   <div className="relative top-8   text-beige z-10 container mx-auto ">
+   <div className="relative top-8   text-beige z-30 container mx-auto ">
       <main className="grid place-items-center   h-[95vh]">
         <div className="w-72 md:w-96  flex flex-col justify-center items-center">
           <Image src={profile} alt="avathar" />

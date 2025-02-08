@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
     disable: process.env.NODE_ENV !== "production",
     register: true,
     skipWaiting: true,
+    navigationPreload: true,
+    
   }),
   images: {
     remotePatterns: [

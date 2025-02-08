@@ -27,7 +27,8 @@ export default function Cards() {
                 delay: i * 0.2,
                 duration: 0.6, 
                 ease: "easeInOut",
-            }
+            },
+        
         }),
 
         hidden: {
@@ -53,6 +54,7 @@ export default function Cards() {
                 initial="hidden"
                 whileInView="visible"
                 custom={index}
+                viewport={{once: true}}
             >
                 <Link href={items.url} >
                

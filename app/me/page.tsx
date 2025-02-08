@@ -5,8 +5,8 @@ import Development from "../../public/Development.svg";
 import Design from "../../public/Desgin.svg";
 import Cyber from "../../public/Cyber.png";
 import Image from "next/image";
-import Navbar from "@/components/Navbar";
-import TechExpCard from "@/components/TechExpCard";
+import Navbar from "../../components/Navbar";
+import TechExpCard from "../../components/TechExpCard";
 
 export default function Page() {
   return (

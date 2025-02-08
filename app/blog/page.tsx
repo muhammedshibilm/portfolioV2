@@ -1,12 +1,12 @@
 "use client";
 
-import { BlogPosts } from "@/utils/BlogPost";
+import { BlogPosts } from "../../utils/BlogPost";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { SlCalender } from "react-icons/sl";
 import { motion } from "framer-motion";
-import Navbar from "@/components/Navbar";
+import Navbar from "../../components/Navbar";
 
 interface Post {
   title: string;

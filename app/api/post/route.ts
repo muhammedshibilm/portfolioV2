@@ -1,8 +1,8 @@
 import {  NextResponse } from "next/server";
-import { DateUtils } from "@/utils/dateUtils";
+import { DateUtils } from "../../../utils/dateUtils";
 
 import Parser from "rss-parser";
-import { ContentUtils } from "@/utils/contentUtils";
+import { ContentUtils } from "../../../utils/contentUtils";
 
 const parser =  new Parser();
 

@@ -1,11 +1,13 @@
 {
   "name": "Shibil App",
   "short_name": "Shibil",
-  "theme_color": "transparent",
+  "description": "A powerful app to manage your health and wellness.",
+  "theme_color": "#0a0a0a",
   "background_color": "#0a0a0a",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
+  "scope": "/",
   "icons": [
     {
       "src": "/windows11/SmallTile.scale-100.png",
