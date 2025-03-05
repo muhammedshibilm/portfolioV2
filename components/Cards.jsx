@@ -94,7 +94,7 @@ export default function Cards() {
                                 {iconsSelector(items.name, 60)}
                             </motion.div>
                             <div className={`text-oliveGreen text-xl flex gap-2 ${items.name == "Mail" ? "md:text-xs overflow-hidden lg:text-md xl:text-lg" : ""}`}>
-                                <h1>@{items.username}</h1>
+                                <h1>@{items.name == "Mail"? items.username.substring(0,18) : items.username}</h1>
                                 <motion.span
                                     initial={{
                                         opacity: 0,

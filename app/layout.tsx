@@ -52,6 +52,7 @@ export default function RootLayout({
     <html lang="en">
       <Head>
         <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#262020" />
       </Head>
       <body>{children}</body>
     </html>

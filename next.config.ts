@@ -9,7 +9,8 @@ const nextConfig: NextConfig = {
     register: true,
     skipWaiting: true,
     navigationPreload: true,
-    
+    cacheOnFrontEndNav: true,
+  
   }),
   images: {
     remotePatterns: [
