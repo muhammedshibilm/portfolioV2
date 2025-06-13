@@ -34,7 +34,7 @@ const Proexp = () =>
         initial={{ x: -100, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         viewport={{ once: true }}
-        className="pl-5 border-l-4 border-deepBrown relative my-20"
+        className="pl-5 border-l-4 border-deepBrown relative mt-20 mb-32 md:mb-20"
       >
         <div className="w-4 h-4 rounded-full bg-oliveGreen absolute -left-3 -top-4"></div>
         <div className="shadow-lg shadow-deepBrown px-6 pb-5 space-y-2 rounded-lg">

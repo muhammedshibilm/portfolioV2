@@ -10,8 +10,8 @@ export default function Page() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen container px-4   pt-20 md:mx-auto lg:px-[100px]">
-        <h1 className=" text-4xl md:text-5xl font-extrabold text-oliveGreen pb-10">
+      <main className="min-h-screen container px-4 pt-5   md:pt-20 md:mx-auto lg:px-[100px]">
+        <h1 className=" text-4xl md:text-5xl font-extrabold text-oliveGreen pb-10 text-center md:text-left">
           About me
         </h1>
         <div className="flex justify-center items-center">
@@ -81,7 +81,7 @@ export default function Page() {
             },
           }}
           viewport={{ once: true }}
-          className="mt-10 text-3xl font-semibold text-oliveGreen"
+          className="mt-10  text-3xl font-semibold text-oliveGreen"
         >
           Professional Experience
         </motion.h1>

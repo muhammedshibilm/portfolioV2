@@ -36,9 +36,9 @@ export default function Page() {
       initial={{ opacity: 0, y: 100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="py-28 container mx-auto px-5   md:px-[100px] space-y-5"
+      className="container mx-auto px-5   md:px-[100px] space-y-5 py-5 md:py-28 mb-32 md:mb-0"
     >
-      <h1 className="text-5xl font-bold text-oliveGreen">My Blogs</h1>
+      <h1 className="text-5xl  font-bold text-oliveGreen text-center md:text-left">My Blogs</h1>
       <p className="text-beige text-xl">
         My Experiences, Lessons, and Technical Journeys
       </p>

@@ -3,10 +3,18 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
+import {
+  RiHomeFill,
+  RiUserFill,
+  RiBookFill,
+  RiProjectorFill,
+  RiContactsBookFill,
+} from "react-icons/ri";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
+  const name = "shibil";
   // Prevent scrolling when menu is open
   useEffect(() => {
     if (open) {
@@ -19,30 +27,30 @@ export default function Navbar() {
   const menuVariants = {
     open: {
       opacity: 1,
-      x: 0,
-      transition: { staggerChildren: 0.15, delayChildren: 0.1 },
+      y: 0,
+      transition: { staggerChildren: 0.1, delayChildren: 0.2, ease: "easeOut" },
     },
     closed: {
       opacity: 0,
-      x: -100,
-      transition: { staggerChildren: 0.1, staggerDirection: -1 },
+      y: 20,
+      transition: {
+        staggerChildren: 0.05,
+        staggerDirection: -1,
+        ease: "easeIn",
+      },
     },
   };
 
   const itemVariants = {
-    open: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.3 },
-    },
+    open: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
     closed: {
       opacity: 0,
-      x: -100,
-      transition: { duration: 0.2 },
+      y: 20,
+      transition: { duration: 0.3, ease: "easeIn" },
     },
   };
 
-  const Links = [
+  const buttons = [
     { name: "Home", target: "/" },
     { name: "Me", target: "/me" },
     { name: "Blog", target: "/blog" },
@@ -55,56 +63,66 @@ export default function Navbar() {
       {/* Desktop Navigation */}
       <div className="w-full fixed z-40 hidden md:grid place-items-center">
         <ul className="flex gap-10 pt-5">
-          {Links.map((item, index) => (
-            <li
+          {buttons.map((item, index) => (
+            <motion.li
+              variants={itemVariants}
               key={index}
               className="relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-oliveGreen after:transition-all after:duration-300 hover:after:w-full"
             >
               <Link href={item.target}>{item.name}</Link>
-            </li>
+            </motion.li>
           ))}
         </ul>
       </div>
 
       {/* Mobile Navigation */}
       <div className="md:hidden">
-        {/* Menu Button */}
-        <div className="w-full flex justify-end pr-5 pt-5 fixed z-50">
-          <motion.span
-            initial={{ scale: 1 }}
-            whileTap={{ scale: 1.02 }}
-            className="border-4 p-2 rounded-full border-oliveGreen"
-          >
-            {open ? (
-              <FaTimes size={30} onClick={() => setOpen(!open)} className="cursor-pointer" />
-            ) : (
-              <FaBars size={30} onClick={() => setOpen(!open)} className="cursor-pointer" />
-            )}
-          </motion.span>
-        </div>
+  
+        <div className="fixed bottom-0 left-0 w-full flex justify-between items-center p-5 z-50 bg-darkBrown">
+          {open && (
+            <motion.ul
+              variants={menuVariants}
+              animate={open ? "open" : "closed"}
+              initial="closed"
+              className="grid grid-cols-3 w-screen gap-10 py-2 place-items-center "
+            >
+              {buttons.map((item, index) => (
+                <li key={index}>
+                  <Link
+                    href={item.target}
+                    className="flex items-center gap-1 text-oliveGreen font-semibold"
+                  >
+                    <div className="flex  flex-col items-center">
+                      {item.name == "Home" && <RiHomeFill size={16} />}
+                      {item.name == "Me" && <RiUserFill size={16} />}
+                      {item.name == "Blog" && <RiBookFill size={16} />}
+                      {item.name == "Projects" && <RiProjectorFill size={16} />}
+                      {item.name == "Contact" && (
+                        <RiContactsBookFill size={16} />
+                      )}
 
-        {/* Full-Screen Overlay */}
-        {open && (
-          <motion.div
-            initial="closed"
-            animate={open ? "open" : "closed"}
-            variants={menuVariants}
-            className="fixed top-0 left-0 w-full h-full bg-deepBrown z-40 flex flex-col justify-center items-center transition-all duration-200"
-          >
-            <motion.ul className="flex flex-col gap-14 text-center">
-              {Links.map((item, index) => (
-                <motion.li
-                  key={index}
-                  variants={itemVariants}
-                  className="text-xl relative w-fit cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-oliveGreen after:transition-all after:duration-300 hover:after:w-full"
-                  onClick={() => setOpen(false)} // Close menu on link click
-                >
-                  <Link href={item.target}>{item.name}</Link>
-                </motion.li>
+                      {item.name}
+                    </div>
+                  </Link>
+                </li>
               ))}
             </motion.ul>
-          </motion.div>
-        )}
+          )}
+
+          
+          <span className="text-oliveGreen font-semibold text-lg">
+            {!open && name}
+          </span>
+          <motion.span
+            initial={{ scale: 1, rotate: 0, opacity: 1 }}
+            animate={{ scale: 1.1, rotate: open ? 90 : 0, opacity: 1 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className={`right-5 bottom-5  border-4 p-2 rounded-full border-oliveGreen cursor-pointer ${open? " fixed " :" static"}`}
+            onClick={() => setOpen(!open)}
+          >
+            {open ? <FaTimes size={16} /> : <FaBars size={16} />}
+          </motion.span>
+        </div>
       </div>
     </nav>
   );

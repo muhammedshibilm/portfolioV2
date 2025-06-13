@@ -6,8 +6,8 @@ export default function Page() {
   return (
     <>
     <Navbar/>
-    <div className="py-28 container px-4  mx-auto md:px-[100px] space-y-10 ">
-      <h1 className="text-5xl font-bold text-oliveGreen">Let&apos;s Connect</h1>
+    <div className=" container px-4  mx-auto md:px-[100px] space-y-10 py-5 md:py-28 mb-32 md:mb-0">
+      <h1 className="text-5xl font-bold text-oliveGreen text-center md:text-left">Let&apos;s Connect</h1>
       <p className="text-beige text-xl md:text-2xl">
         Feel free to reach out through any of these platforms. I&apos;m always
         open to new connections and conversations.
