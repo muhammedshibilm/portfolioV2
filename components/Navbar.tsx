@@ -10,11 +10,33 @@ import {
   RiProjectorFill,
   RiContactsBookFill,
 } from "react-icons/ri";
+import { usePathname } from "next/navigation";
+
+const name = "shibil";
+
+const buttons = [
+  { name: "Home", target: "/" },
+  { name: "Me", target: "/me" },
+  { name: "Blog", target: "/blog" },
+  { name: "Projects", target: "/projects" },
+  { name: "Contact", target: "/contact" },
+];
+
+function firstCharUpper(str: string) {
+  if (!str) {
+    return "";
+  }
+  if (str == "/") {
+    return "Home";
+  } else {
+    const value = str.slice(1);
+    return value.charAt(0).toUpperCase() + value.slice(1);
+  }
+}
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-
-  const name = "shibil";
+  const pathname = usePathname();
   // Prevent scrolling when menu is open
   useEffect(() => {
     if (open) {
@@ -50,14 +72,6 @@ export default function Navbar() {
     },
   };
 
-  const buttons = [
-    { name: "Home", target: "/" },
-    { name: "Me", target: "/me" },
-    { name: "Blog", target: "/blog" },
-    { name: "Projects", target: "/projects" },
-    { name: "Contact", target: "/contact" },
-  ];
-
   return (
     <nav className="text-beige z-50 w-screen text-md font-semibold">
       {/* Desktop Navigation */}
@@ -67,7 +81,9 @@ export default function Navbar() {
             <motion.li
               variants={itemVariants}
               key={index}
-              className="relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-oliveGreen after:transition-all after:duration-300 hover:after:w-full"
+              className={`relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-oliveGreen after:transition-all after:duration-300 hover:after:w-full ${
+                pathname == item.target && " border-b-2  border-oliveGreen"
+              }`}
             >
               <Link href={item.target}>{item.name}</Link>
             </motion.li>
@@ -77,7 +93,6 @@ export default function Navbar() {
 
       {/* Mobile Navigation */}
       <div className="md:hidden">
-  
         <div className="fixed bottom-0 left-0 w-full flex justify-between items-center p-5 z-50 bg-darkBrown">
           {open && (
             <motion.ul
@@ -109,15 +124,17 @@ export default function Navbar() {
             </motion.ul>
           )}
 
-          
           <span className="text-oliveGreen font-semibold text-lg">
             {!open && name}
           </span>
+          <span>{!open && firstCharUpper(pathname.trim().toString())}</span>
           <motion.span
             initial={{ scale: 1, rotate: 0, opacity: 1 }}
             animate={{ scale: 1.1, rotate: open ? 90 : 0, opacity: 1 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className={`right-5 bottom-5  border-4 p-2 rounded-full border-oliveGreen cursor-pointer ${open? " fixed " :" static"}`}
+            className={`right-5 bottom-5  border-4 p-2 rounded-full border-oliveGreen cursor-pointer ${
+              open ? " fixed " : " static"
+            }`}
             onClick={() => setOpen(!open)}
           >
             {open ? <FaTimes size={16} /> : <FaBars size={16} />}

@@ -10,7 +10,7 @@ export default function Page() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen container px-4 pt-5   md:pt-20 md:mx-auto lg:px-[100px]">
+      <section id="me" className="min-h-screen container px-4 pt-5   md:pt-20 md:mx-auto lg:px-[100px]">
         <h1 className=" text-4xl md:text-5xl font-extrabold text-oliveGreen pb-10 text-center md:text-left">
           About me
         </h1>
@@ -86,7 +86,7 @@ export default function Page() {
           Professional Experience
         </motion.h1>
         <Proexp />
-      </main>
+      </section>
     </>
   );
 }

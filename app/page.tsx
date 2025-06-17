@@ -28,7 +28,7 @@ export default function Page() {
     <>
       <Navbar />
 
-      <div className="relative top-8   text-beige z-30 container mx-auto ">
+      <section id="home" className="relative top-8   text-beige z-30 container mx-auto mb-32 md:mb-0 ">
         <main className="grid place-items-center   h-[95vh]">
           <div className="w-72 md:w-96  flex flex-col justify-center items-center">
             <div className=" relative w-32 h-32 border rounded-full overflow-hidden md:w-52 md:h-52">
@@ -106,7 +106,7 @@ export default function Page() {
             })}
           </div>
         </section>
-      </div>
+      </section>
     </>
   );
 }
