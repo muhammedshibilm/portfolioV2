@@ -5,11 +5,23 @@ import Navbar from "../../components/Navbar";
 import { Plus, Trash2, Save, Edit2, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+type Project = {
+    title: string;
+    description: string;
+    tags: string[];
+    link: string;
+    image: string;
+};
+
+type EditingProject = Project & { index: number };
+
+type SkillCategory = Record<string, string[]>;
+
 export default function AdminPage() {
-    const [projects, setProjects] = useState([]);
-    const [skills, setSkills] = useState([]);
+    const [projects, setProjects] = useState<Project[]>([]);
+    const [skills, setSkills] = useState<SkillCategory[]>([]);
     const [loading, setLoading] = useState(true);
-    const [editingProject, setEditingProject] = useState(null);
+    const [editingProject, setEditingProject] = useState<EditingProject | null>(null);
     const [activeTab, setActiveTab] = useState("projects");
 
     useEffect(() => {
@@ -29,7 +41,7 @@ export default function AdminPage() {
         setLoading(false);
     };
 
-    const handleSaveProjects = async (updatedProjects) => {
+    const handleSaveProjects = async (updatedProjects: Project[]) => {
         const res = await fetch("/api/projects", {
             method: "POST",
             body: JSON.stringify(updatedProjects),
@@ -41,12 +53,12 @@ export default function AdminPage() {
         }
     };
 
-    const handleDeleteProject = (index) => {
+    const handleDeleteProject = (index: number) => {
         const newProjects = projects.filter((_, i) => i !== index);
         handleSaveProjects(newProjects);
     };
 
-    const handleUpdateProject = (index, updatedProject) => {
+    const handleUpdateProject = (index: number, updatedProject: Project) => {
         const newProjects = [...projects];
         newProjects[index] = updatedProject;
         handleSaveProjects(newProjects);

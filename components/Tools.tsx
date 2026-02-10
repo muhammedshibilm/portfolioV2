@@ -9,7 +9,6 @@ import {
   SiTailwindcss,
   SiDjango,
   SiPostgresql,
-  SiJavascript,
   SiTypescript,
   SiLangchain,
   SiHuggingface,
@@ -17,8 +16,10 @@ import {
 import { VscVscode } from "react-icons/vsc";
 import { ShieldCheck, Smartphone } from "lucide-react";
 
+type SkillCategory = Record<string, string[]>;
+
 export default function Tools() {
-  const [skills, setSkills] = useState([]);
+  const [skills, setSkills] = useState<SkillCategory[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -31,7 +32,7 @@ export default function Tools() {
       .catch(() => setLoading(false));
   }, []);
 
-  const getIcon = (name) => {
+  const getIcon = (name: string) => {
     const n = name.toLowerCase();
     if (n.includes("next")) return <SiNextdotjs />;
     if (n.includes("react")) return <FaReact />;

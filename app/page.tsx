@@ -5,7 +5,6 @@ import Image from "next/image";
 import profile from "../public/profile.jpg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { FaArrowRight } from "react-icons/fa";
 import { ArrowDownRight, Github, Linkedin, Mail } from "lucide-react";
 import exploredata from "../db/exploredata.json";
 import Navbar from "../components/Navbar";

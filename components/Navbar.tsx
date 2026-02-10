@@ -3,13 +3,6 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
-import {
-  RiHomeFill,
-  RiUserFill,
-  RiBookFill,
-  RiProjectorFill,
-  RiContactsBookFill,
-} from "react-icons/ri";
 import { usePathname } from "next/navigation";
 
 const buttons = [

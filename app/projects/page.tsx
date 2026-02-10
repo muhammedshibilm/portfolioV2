@@ -6,9 +6,17 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github, Layers } from "lucide-react";
 import gsap from "gsap";
 
+type Project = {
+    title: string;
+    description: string;
+    tags: string[];
+    link: string;
+    image: string;
+};
+
 export default function Page() {
     const pageRef = useRef<HTMLDivElement>(null);
-    const [projectsList, setProjectsList] = useState([]);
+    const [projectsList, setProjectsList] = useState<Project[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {

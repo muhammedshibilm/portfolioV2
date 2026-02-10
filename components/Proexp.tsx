@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
 
@@ -21,7 +21,7 @@ const staticData = [
 ];
 
 const Proexp = () => {
-  const [data, setData] = useState(staticData);
+  const [data] = useState(staticData);
 
   /*
   useEffect(() => {

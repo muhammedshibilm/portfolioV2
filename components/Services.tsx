@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 
 export default function Service() {
-  const [services, setServices] = useState([
+  const [services] = useState([
     "Frontend Development",
     "Responsive Web Development",
     "User Interface (UI) Development",
