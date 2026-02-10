@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Navbar from "../components/Navbar";
-import { Plus, Trash2, Save, Edit2, X, Github, ExternalLink } from "lucide-react";
+import Navbar from "../../components/Navbar";
+import { Plus, Trash2, Save, Edit2, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function AdminPage() {
