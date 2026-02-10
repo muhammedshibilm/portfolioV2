@@ -1,15 +1,47 @@
 [
   {
-    "Backend": ["FastApi", "Django", "NodeJs", "REST"]
-  },
-  {
-    "Frontend": [  "Vue","NextJs", "TypeScript",   "Tailwind","Framer motion"
+    "Backend": [
+      "FastAPI",
+      "Django",
+      "Node.js",
+      "Python",
+      "REST API",
+      "Webhooks"
     ]
   },
   {
-    "Database": ["PostgreSQL", "Mongodb", "MySQL"]
+    "Frontend": [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Three.js",
+      "GSAP"
+    ]
   },
   {
-    "Tools": ["Linux", "Git", "Namp"]
+    "Mobile": [
+      "Flutter",
+      "Dart",
+      "Mobile App Development",
+      "GPS Integration"
+    ]
+  },
+  {
+    "Database": [
+      "PostgreSQL",
+      "MongoDB",
+      "MySQL",
+      "Redis"
+    ]
+  },
+  {
+    "Tools": [
+      "Linux",
+      "Git",
+      "Nmap",
+      "Docker",
+      "VS Code"
+    ]
   }
 ]

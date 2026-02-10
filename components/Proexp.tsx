@@ -1,6 +1,12 @@
-import { motion } from "framer-motion";
+"use client";
 
-const data = [
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Briefcase } from "lucide-react";
+
+// In a real app, this data would also come from an API.
+// For now, I'll keep it as a static array but set up for easy transition.
+const staticData = [
   {
     title: "Backend & Frontend Engineer",
     organization: "Celestia",
@@ -14,70 +20,70 @@ const data = [
   },
 ];
 
-const fadeInVariants = {
-  hidden: { opacity: 0, y: 10 },
-  visible: (index: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: index * 0.2,
-      duration: 0.5,
-    },
-  }),
-};
+const Proexp = () => {
+  const [data, setData] = useState(staticData);
 
-const Proexp = () =>
-  data.map((item, index) => {
-    return (
-      <motion.div
-        key={index}
-        initial={{ x: -100, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        viewport={{ once: true }}
-        className="pl-5 border-l-4 border-deepBrown relative mt-20 mb-32 md:mb-20"
-      >
-        <div className="w-4 h-4 rounded-full bg-oliveGreen absolute -left-3 -top-4"></div>
-        <div className="shadow-lg shadow-deepBrown px-6 pb-5 space-y-2 rounded-lg">
-          <div className="flex flex-col md:flex-row md:justify-between">
-            <div className="py-2">
-              <h1 className="text-xl py-2 font-bold">{item.title}</h1>
-              <h2 className="text-md text-oliveGreen">{item.organization}</h2>
+  /*
+  useEffect(() => {
+    fetch("/api/experience")
+      .then(res => res.json())
+      .then(data => setData(data));
+  }, []);
+  */
+
+  return (
+    <div className="space-y-12">
+      {data.map((item, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative pl-12 pb-12 border-l border-white/10 last:pb-0"
+        >
+          {/* Timeline Dot */}
+          <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-oliveGreen border-4 border-background shadow-[0_0_15px_rgba(138,144,100,0.5)]"></div>
+
+          <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8">
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <Briefcase size={16} className="text-oliveGreen" />
+                <h3 className="text-2xl font-bold tracking-tight">{item.title}</h3>
+              </div>
+              <p className="text-oliveGreen font-semibold tracking-wide uppercase text-xs">
+                {item.organization}
+              </p>
             </div>
-            <p className="text-xs text-beige">{item.year}</p>
+            <div className="glass px-4 py-2 rounded-full border border-white/5 whitespace-nowrap">
+              <span className="text-sm font-medium text-beige/60">{item.year}</span>
+            </div>
           </div>
-          <ul className="list-disc space-y-4 text-md">
-            {item.descriptions.map((desc, i) => (
-              <motion.li
-                key={i}
-                variants={fadeInVariants}
-                initial="hidden"
-                whileInView="visible"
-                custom={i}
-                viewport={{ once: true }}
-              >
-                {desc}
-              </motion.li>
-            ))}
-          </ul>
-          {/* Tools */}
-          <ul className="pt-5 flex gap-5 flex-wrap">
-            {item.tools.map((tool, i) => (
-              <motion.li
-                key={i}
-                variants={fadeInVariants}
-                initial="hidden"
-                whileInView="visible"
-                custom={i}
-                viewport={{ once: true }}
-                className="bg-deepBrown px-4 rounded-lg py-2 w-fit"
-              >
-                {tool}
-              </motion.li>
-            ))}
-          </ul>
-        </div>
-      </motion.div>
-    );
-  });
+
+          <div className="glass-card p-8 rounded-3xl border border-white/5 space-y-6">
+            <ul className="space-y-4">
+              {item.descriptions.map((desc, i) => (
+                <li key={i} className="flex gap-3 text-beige/70 leading-relaxed">
+                  <span className="text-oliveGreen mt-1.5">•</span>
+                  {desc}
+                </li>
+              ))}
+            </ul>
+
+            <div className="flex gap-2 flex-wrap pt-4">
+              {item.tools.map((tool, i) => (
+                <span
+                  key={i}
+                  className="px-3 py-1 rounded-lg bg-oliveGreen/5 border border-oliveGreen/10 text-[11px] font-bold text-oliveGreen tracking-widest uppercase"
+                >
+                  {tool}
+                </span>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  );
+};
 
 export default Proexp;

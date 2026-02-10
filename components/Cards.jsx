@@ -1,122 +1,69 @@
 "use client";
-import { CgMail } from "react-icons/cg";
-import { FaXTwitter } from "react-icons/fa6";
-import { LiaGithub, LiaLinkedin } from "react-icons/lia";
+
+import { Mail, Github, Linkedin, Twitter, ArrowUpRight } from "lucide-react";
 import datas from "../db/contact.json";
-import { delay, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { GoArrowUpRight } from "react-icons/go";
-import { useState } from "react";
 
 export default function Cards() {
-    const icons = {
-        LinkedIn: <LiaLinkedin size={60} className="text-beige" />,
-        Twitter: <FaXTwitter size={60} className="text-beige" />,
-        GitHub: <LiaGithub size={60} />,
-        Mail: <CgMail size={60} className="text-beige" />,
-    };
-
-    const iconsSelector = (itemname) => icons[itemname] || null;
-
-    const variants = {
-        visible: i => ({
-            opacity: 1,
-            y: 0,  
-            scale: 1, 
-            transition: {
-                delay: i * 0.2,
-                duration: 0.6, 
-                ease: "easeInOut",
-            },
-        
-        }),
-
-        hidden: {
-            opacity: 0,
-            y: 100,  
-            scale: 0.98, 
-            transition: {
-                duration: 0.4,
-                ease: "easeInOut",
-            }
+    const getIcon = (name) => {
+        switch (name) {
+            case "LinkedIn": return <Linkedin size={24} />;
+            case "Twitter": return <Twitter size={24} />;
+            case "GitHub": return <Github size={24} />;
+            case "Mail": return <Mail size={24} />;
+            default: return null;
         }
     };
 
     return (
-        datas.map((items, index) => {
+        <>
+            {datas.map((item, index) => (
+                <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="group"
+                >
+                    <Link href={item.url} target="_blank">
+                        <div className="glass-card p-8 rounded-[2rem] flex flex-col gap-6 relative overflow-hidden h-full">
+                            {/* Decoration */}
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-oliveGreen/5 blur-3xl rounded-full group-hover:bg-oliveGreen/10 transition-all duration-500" />
 
-            const [isHovered, setIsHovered] = useState(false);
-
-            return (
-                <motion.span
-                key={index}
-                variants={variants}
-                initial="hidden"
-                whileInView="visible"
-                custom={index}
-                viewport={{once: true}}
-            >
-                <Link href={items.url} >
-               
-                        <motion.div
-                            onHoverStart={() => setIsHovered(true)}
-                            onHoverEnd={() => setIsHovered(false)}
-                            initial={{
-                                scale: 1,
-                                borderWidth: "0px",
-                                borderImage: "none",
-                            }}
-                            whileHover={{
-                                scale: 1.05,
-                                borderBottomWidth: "6px",
-                                borderImageSource: "linear-gradient(to right, rgba(41,35,19,0), #8a9064, rgba(41,35,19,0))",
-                                borderImageSlice: [1],
-                            }}
-                            transition={{
-                                duration: 0.3,
-                            }}
-                            className="py-12 rounded-lg flex flex-col space-y-5 justify-center items-center w-full bg-darkBrown"
-                        >
-                            {/* Icon */}
-                            <motion.div
-                                initial={{
-                                    rotate: 0,
-                                    scale: 1
-                                }}
-                                animate={{
-                                    rotate: isHovered ? 5 : 0,
-                                    scale: 1.05,
-                                }}
-                                transition={{ duration: 0.3 }}
-                                className={`rounded-full p-4 text-black`}
-                                style={{ backgroundColor: items.color }}
-                            >
-                                {iconsSelector(items.name, 60)}
-                            </motion.div>
-                            <div className={`text-oliveGreen text-xl flex gap-2 ${items.name == "Mail" ? "md:text-xs overflow-hidden lg:text-md xl:text-lg" : ""}`}>
-                                <h1>@{items.name == "Mail"? items.username.substring(0,18) : items.username}</h1>
-                                <motion.span
-                                    initial={{
-                                        opacity: 0,
-                                        y: 10
-                                    }}
-                                    animate={{
-                                        opacity: isHovered ? 1 : 0,
-                                        y: isHovered ? 0 : 10
-                                    }}
-                                    transition={{
-                                        duration: 0.3,
-                                        ease: "easeInOut"
-                                    }}
-                                    className="text-beige font-bold"> <GoArrowUpRight /> </motion.span>
+                            <div className="flex justify-between items-start">
+                                <div
+                                    className="w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110"
+                                    style={{ backgroundColor: `${item.color}20`, color: item.color }}
+                                >
+                                    {getIcon(item.name)}
+                                </div>
+                                <div className="w-10 h-10 rounded-full glass border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0">
+                                    <ArrowUpRight size={18} className="text-oliveGreen" />
+                                </div>
                             </div>
-                            <p className="text-beige ">{items.description}</p>
-                        </motion.div>
-                   
-                </Link>
 
-                </motion.span>
-            )
-        })
+                            <div>
+                                <h3 className="text-xl font-bold tracking-tight mb-1 group-hover:text-oliveGreen transition-colors">
+                                    {item.name}
+                                </h3>
+                                <p className="text-sm text-beige/40 font-medium mb-4">
+                                    {item.username}
+                                </p>
+                                <p className="text-beige/60 text-sm leading-relaxed">
+                                    {item.description}
+                                </p>
+                            </div>
+
+                            <div className="pt-4 flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-oliveGreen opacity-0 group-hover:opacity-100 transition-all duration-500">
+                                <span>Connect with me</span>
+                                <div className="w-8 h-[1px] bg-oliveGreen" />
+                            </div>
+                        </div>
+                    </Link>
+                </motion.div>
+            ))}
+        </>
     );
 }

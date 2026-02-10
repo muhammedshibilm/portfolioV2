@@ -1,4 +1,7 @@
-import { FaReact, FaPython, FaNodeJs, FaKey, FaGithub } from "react-icons/fa";
+"use client";
+
+import { useState, useEffect } from "react";
+import { FaReact, FaPython, FaNodeJs, FaGithub } from "react-icons/fa";
 import { motion } from "framer-motion";
 import {
   SiNextdotjs,
@@ -12,67 +15,84 @@ import {
   SiHuggingface,
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
+import { ShieldCheck, Smartphone } from "lucide-react";
 
 export default function Tools() {
-  const tools = [
-    { name: "Next.js", icon: <SiNextdotjs /> },
-    { name: "React.js", icon: <FaReact /> },
-    { name: "FastAPI", icon: <SiFastapi /> },
-    { name: "Django", icon: <SiDjango /> },
-    { name: "Python", icon: <FaPython /> },
-    { name: "PostgreSQL", icon: <SiPostgresql /> },
-    { name: "Javascript", icon: <SiJavascript /> },
-    { name: "Nodejs", icon: <FaNodeJs /> },
-    { name: "TypeScript", icon: <SiTypescript /> },
-    { name: "Tailwind CSS", icon: <SiTailwindcss /> },
-    { name: "JWT Authentication", icon: <FaKey /> },
-    { name: "LangChain", icon: <SiLangchain /> },
-    { name: "Hugging Face", icon: <SiHuggingface /> },
-    { name: "Git", icon: <FaGithub /> },
-    { name: "Vs Code", icon: <VscVscode /> },
-  ];
+  const [skills, setSkills] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/skills")
+      .then(res => res.json())
+      .then(data => {
+        setSkills(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  const getIcon = (name) => {
+    const n = name.toLowerCase();
+    if (n.includes("next")) return <SiNextdotjs />;
+    if (n.includes("react")) return <FaReact />;
+    if (n.includes("fastapi")) return <SiFastapi />;
+    if (n.includes("django")) return <SiDjango />;
+    if (n.includes("python")) return <FaPython />;
+    if (n.includes("postgres")) return <SiPostgresql />;
+    if (n.includes("node")) return <FaNodeJs />;
+    if (n.includes("typescript")) return <SiTypescript />;
+    if (n.includes("tailwind")) return <SiTailwindcss />;
+    if (n.includes("auth")) return <ShieldCheck />;
+    if (n.includes("flutter") || n.includes("dart") || n.includes("mobile")) return <Smartphone />;
+    if (n.includes("langchain")) return <SiLangchain />;
+    if (n.includes("hugging")) return <SiHuggingface />;
+    if (n.includes("git")) return <FaGithub />;
+    if (n.includes("code") || n.includes("vs")) return <VscVscode />;
+    return <FaReact />; // Default
+  };
+
+  // Flatten skills into tools format
+  const tools = skills.flatMap(category => {
+    const catName = Object.keys(category)[0];
+    return category[catName].map(name => ({
+      name,
+      icon: getIcon(name),
+      category: catName
+    }));
+  });
+
+  if (loading) return null;
 
   return (
-    <div className="p-6  text-white rounded-lg shadow-lg">
-      <motion.h1
-        initial={{ x: -100, opacity: 0 }}
-        whileInView={{
-          x: 0,
-          opacity: 1,
-          transition: {  duration: 1 },
-        }}
-        viewport={{ once: true }}
-        className="my-10 text-3xl font-semibold text-oliveGreen  text-center"
-      >
-        Tech Stack & Tools
-      </motion.h1>
-      <motion.div
-        initial={{ y: 100, opacity: 0 }}
-        whileInView={{
-          y: 0,
-          opacity: 1,
-          transition: { duration: 1 },
-        }}
-        viewport={{ once: true }}
-        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-center"
-      >
+    <div className="py-12">
+      <div className="flex items-center gap-4 mb-12">
+        <h2 className="text-3xl font-bold tracking-tight">Tech Stack</h2>
+        <div className="flex-1 h-[1px] bg-white/10"></div>
+      </div>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {tools.map((tool, index) => (
           <motion.div
-          initial={{
-            scale:1
-          }}
-
-          whileHover={{
-            scale: 1.04
-          }}
             key={index}
-            className="flex flex-col items-center p-4 bg-[#282828]  rounded-lg shadow-md  transition"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            whileHover={{ y: -5 }}
+            transition={{ delay: index * 0.05 }}
+            className="glass-card p-6 flex flex-col items-center gap-3 text-center group"
           >
-            <div className="text-4xl text-oliveGreen mb-2">{tool.icon}</div>
-            <p className="text-sm font-medium">{tool.name}</p>
+            <div className="text-4xl text-beige/40 group-hover:text-oliveGreen transition-colors duration-300">
+              {tool.icon}
+            </div>
+            <div>
+              <p className="text-sm font-bold tracking-tight">{tool.name}</p>
+              <p className="text-[10px] uppercase tracking-widest text-beige/30 font-medium">
+                {tool.category}
+              </p>
+            </div>
           </motion.div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }

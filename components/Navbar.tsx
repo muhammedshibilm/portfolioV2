@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import {
   RiHomeFill,
@@ -12,8 +12,6 @@ import {
 } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 
-const name = "shibil";
-
 const buttons = [
   { name: "Home", target: "/" },
   { name: "Me", target: "/me" },
@@ -22,22 +20,19 @@ const buttons = [
   { name: "Contact", target: "/contact" },
 ];
 
-function firstCharUpper(str: string) {
-  if (!str) {
-    return "";
-  }
-  if (str == "/") {
-    return "Home";
-  } else {
-    const value = str.slice(1);
-    return value.charAt(0).toUpperCase() + value.slice(1);
-  }
-}
-
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
-  // Prevent scrolling when menu is open
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -46,101 +41,80 @@ export default function Navbar() {
     }
   }, [open]);
 
-  const menuVariants = {
-    open: {
-      opacity: 1,
-      y: 0,
-      transition: { staggerChildren: 0.1, delayChildren: 0.2, ease: "easeOut" },
-    },
-    closed: {
-      opacity: 0,
-      y: 20,
-      transition: {
-        staggerChildren: 0.05,
-        staggerDirection: -1,
-        ease: "easeIn",
-      },
-    },
-  };
-
-  const itemVariants = {
-    open: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
-    closed: {
-      opacity: 0,
-      y: 20,
-      transition: { duration: 0.3, ease: "easeIn" },
-    },
+  const navVariants = {
+    initial: { y: -100, opacity: 0 },
+    animate: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } },
   };
 
   return (
-    <nav className="text-beige z-50 w-screen text-md font-semibold">
-      {/* Desktop Navigation */}
-      <div className="w-full fixed z-40 hidden md:grid place-items-center">
-        <ul className="flex gap-10 pt-5">
-          {buttons.map((item, index) => (
-            <motion.li
-              variants={itemVariants}
-              key={index}
-              className={`relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-oliveGreen after:transition-all after:duration-300 hover:after:w-full ${
-                pathname == item.target && " border-b-2  border-oliveGreen"
-              }`}
-            >
-              <Link href={item.target}>{item.name}</Link>
-            </motion.li>
-          ))}
-        </ul>
-      </div>
+    <nav className="fixed top-0 left-0 w-full z-50 px-6 py-4">
+      <motion.div
+        variants={navVariants}
+        initial="initial"
+        animate="animate"
+        className={`mx-auto max-w-5xl rounded-full transition-all duration-300 ${scrolled ? "glass border border-white/10 px-8 py-3" : "px-4 py-4"
+          }`}
+      >
+        <div className="flex items-center justify-between">
+          <Link href="/" className="text-xl font-bold tracking-tighter hover:text-oliveGreen transition-colors">
+            SHIBIL<span className="text-oliveGreen">.</span>
+          </Link>
 
-      {/* Mobile Navigation */}
-      <div className="md:hidden">
-        <div className="fixed bottom-0 left-0 w-full flex justify-between items-center p-5 z-50 bg-darkBrown">
-          {open && (
-            <motion.ul
-              variants={menuVariants}
-              animate={open ? "open" : "closed"}
-              initial="closed"
-              className="grid grid-cols-3 w-screen gap-10 py-2 place-items-center "
-            >
-              {buttons.map((item, index) => (
-                <li key={index}>
-                  <Link
-                    href={item.target}
-                    className="flex items-center gap-1 text-oliveGreen font-semibold"
-                  >
-                    <div className="flex  flex-col items-center">
-                      {item.name == "Home" && <RiHomeFill size={16} />}
-                      {item.name == "Me" && <RiUserFill size={16} />}
-                      {item.name == "Blog" && <RiBookFill size={16} />}
-                      {item.name == "Projects" && <RiProjectorFill size={16} />}
-                      {item.name == "Contact" && (
-                        <RiContactsBookFill size={16} />
-                      )}
+          {/* Desktop Navigation */}
+          <ul className="hidden md:flex items-center gap-8">
+            {buttons.map((item, index) => (
+              <li key={index}>
+                <Link
+                  href={item.target}
+                  className={`text-sm tracking-wide transition-all duration-300 hover:text-oliveGreen ${pathname === item.target ? "text-oliveGreen font-bold" : "text-beige/80"
+                    }`}
+                >
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-                      {item.name}
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </motion.ul>
-          )}
-
-          <span className="text-oliveGreen font-semibold text-lg">
-            {!open && name}
-          </span>
-          <span>{!open && firstCharUpper(pathname.trim().toString())}</span>
-          <motion.span
-            initial={{ scale: 1, rotate: 0, opacity: 1 }}
-            animate={{ scale: 1.1, rotate: open ? 90 : 0, opacity: 1 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className={`right-5 bottom-5  border-4 p-2 rounded-full border-oliveGreen cursor-pointer ${
-              open ? " fixed " : " static"
-            }`}
+          {/* Mobile Toggle */}
+          <button
+            className="md:hidden text-oliveGreen p-2"
             onClick={() => setOpen(!open)}
           >
-            {open ? <FaTimes size={16} /> : <FaBars size={16} />}
-          </motion.span>
+            {open ? <FaTimes size={20} /> : <FaBars size={20} />}
+          </button>
         </div>
-      </div>
+      </motion.div>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl md:hidden flex flex-col items-center justify-center gap-8"
+          >
+            {buttons.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Link
+                  href={item.target}
+                  onClick={() => setOpen(false)}
+                  className={`text-3xl font-bold transition-colors ${pathname === item.target ? "text-oliveGreen" : "text-beige"
+                    }`}
+                >
+                  {item.name}
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
