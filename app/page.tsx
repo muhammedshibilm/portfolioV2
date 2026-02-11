@@ -94,9 +94,9 @@ export default function Page() {
             className="flex items-center justify-center gap-6 pt-8"
           >
             {[
-              { icon: Github, href: "https://github.com" },
-              { icon: Linkedin, href: "https://linkedin.com" },
-              { icon: Mail, href: "mailto:shibil@example.com" },
+              { icon: Github, href: "https://github.com/muhammedshibilm" },
+              { icon: Linkedin, href: "https://in.linkedin.com/in/muhammedshibilm" },
+              { icon: Mail, href: "mailto:muhammedshibilm321@gmail.com" },
             ].map((social, i) => (
               <a
                 key={i}
