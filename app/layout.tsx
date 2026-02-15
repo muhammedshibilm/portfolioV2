@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Head from "next/head";
+import { Analytics } from "@vercel/analytics/react";
 import SmoothScroll from "../components/SmoothScroll";
 
 export const viewport: Viewport = {
@@ -57,6 +58,7 @@ export default function RootLayout({
       </Head>
       <body className="mesh-gradient antialiased">
         <SmoothScroll>{children}</SmoothScroll>
+        <Analytics />
       </body>
     </html>
   );
