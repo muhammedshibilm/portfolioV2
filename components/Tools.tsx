@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { IconMap } from "../utils/iconMap";
-import { Globe } from "lucide-react";
+import { getIcon } from "../utils/iconMap";
 
 type SkillItem = {
   name: string;
@@ -30,15 +29,11 @@ export default function Tools() {
   const tools = skills.flatMap(category => {
     const catName = Object.keys(category)[0];
     const items = category[catName] || [];
-    return items.map((item: SkillItem): { name: string; icon: React.ReactNode; category: string } => {
-      const IconComponent = IconMap[item.icon] || Globe;
-      return {
-        name: item.name,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        icon: <IconComponent /> as any,
-        category: catName
-      };
-    });
+    return items.map((item: SkillItem): { name: string; icon: React.ReactNode; category: string } => ({
+      name: item.name,
+      icon: getIcon(item.icon),
+      category: catName
+    }));
   });
 
   if (loading) return null;

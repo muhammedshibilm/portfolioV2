@@ -64,10 +64,14 @@ export const IconMap: Record<string, React.ElementType> = {
     Cpu
 };
 
-export const getIcon = (iconName: string) => {
-    const IconComponent = IconMap[iconName];
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return IconComponent ? <IconComponent /> : <Globe />; // Default fallback
+export const getIcon = (iconName: string): React.ReactNode => {
+    const IconComponent = IconMap[iconName] as React.ComponentType<any>;
+
+    if (!IconComponent) {
+        return <Globe />;
+    }
+
+    return <IconComponent key={iconName} />;
 };
 
 export const getIconNames = () => Object.keys(IconMap).sort();
