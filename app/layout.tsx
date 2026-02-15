@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Head from "next/head";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 import SmoothScroll from "../components/SmoothScroll";
 
 export const viewport: Viewport = {
