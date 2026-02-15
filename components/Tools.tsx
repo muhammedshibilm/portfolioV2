@@ -1,22 +1,16 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { FaReact, FaPython, FaNodeJs, FaGithub } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import {
-  SiNextdotjs,
-  SiFastapi,
-  SiTailwindcss,
-  SiDjango,
-  SiPostgresql,
-  SiTypescript,
-  SiLangchain,
-  SiHuggingface,
-} from "react-icons/si";
-import { VscVscode } from "react-icons/vsc";
-import { ShieldCheck, Smartphone } from "lucide-react";
+import { IconMap } from "../utils/iconMap";
+import { Globe } from "lucide-react";
 
-type SkillCategory = Record<string, string[]>;
+type SkillItem = {
+  name: string;
+  icon: string;
+};
+
+type SkillCategory = Record<string, SkillItem[]>;
 
 export default function Tools() {
   const [skills, setSkills] = useState<SkillCategory[]>([]);
@@ -32,34 +26,19 @@ export default function Tools() {
       .catch(() => setLoading(false));
   }, []);
 
-  const getIcon = (name: string) => {
-    const n = name.toLowerCase();
-    if (n.includes("next")) return <SiNextdotjs />;
-    if (n.includes("react")) return <FaReact />;
-    if (n.includes("fastapi")) return <SiFastapi />;
-    if (n.includes("django")) return <SiDjango />;
-    if (n.includes("python")) return <FaPython />;
-    if (n.includes("postgres")) return <SiPostgresql />;
-    if (n.includes("node")) return <FaNodeJs />;
-    if (n.includes("typescript")) return <SiTypescript />;
-    if (n.includes("tailwind")) return <SiTailwindcss />;
-    if (n.includes("auth")) return <ShieldCheck />;
-    if (n.includes("flutter") || n.includes("dart") || n.includes("mobile")) return <Smartphone />;
-    if (n.includes("langchain")) return <SiLangchain />;
-    if (n.includes("hugging")) return <SiHuggingface />;
-    if (n.includes("git")) return <FaGithub />;
-    if (n.includes("code") || n.includes("vs")) return <VscVscode />;
-    return <FaReact />; // Default
-  };
-
   // Flatten skills into tools format
   const tools = skills.flatMap(category => {
     const catName = Object.keys(category)[0];
-    return category[catName].map(name => ({
-      name,
-      icon: getIcon(name),
-      category: catName
-    }));
+    const items = category[catName] || [];
+    return items.map((item: SkillItem): { name: string; icon: React.ReactNode; category: string } => {
+      const IconComponent = IconMap[item.icon] || Globe;
+      return {
+        name: item.name,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        icon: <IconComponent /> as any,
+        category: catName
+      };
+    });
   });
 
   if (loading) return null;

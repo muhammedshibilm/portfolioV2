@@ -1,47 +1,118 @@
 [
   {
     "Backend": [
-      "FastAPI",
-      "Django",
-      "Node.js",
-      "Python",
-      "REST API",
-      "Webhooks"
+      {
+        "name": "FastAPI",
+        "icon": "SiFastapi"
+      },
+      {
+        "name": "Django",
+        "icon": "SiDjango"
+      },
+      {
+        "name": "Node.js",
+        "icon": "FaNodeJs"
+      },
+      {
+        "name": "Python",
+        "icon": "FaPython"
+      },
+      {
+        "name": "REST API",
+        "icon": "TbApi"
+      },
+      {
+        "name": "Webhooks",
+        "icon": "LuWebhook"
+      }
     ]
   },
   {
     "Frontend": [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Three.js",
-      "GSAP"
+      {
+        "name": "React",
+        "icon": "FaReact"
+      },
+      {
+        "name": "Next.js",
+        "icon": "SiNextdotjs"
+      },
+      {
+        "name": "TypeScript",
+        "icon": "SiTypescript"
+      },
+      {
+        "name": "Tailwind CSS",
+        "icon": "SiTailwindcss"
+      },
+      {
+        "name": "Three.js",
+        "icon": "TbBrandThreejs"
+      },
+      {
+        "name": "GSAP",
+        "icon": "TbBrandGreensock"
+      }
     ]
   },
   {
     "Mobile": [
-      "Flutter",
-      "Dart",
-      "Mobile App Development",
-      "GPS Integration"
+      {
+        "name": "Flutter",
+        "icon": "SiFlutter"
+      },
+      {
+        "name": "Dart",
+        "icon": "SiDart"
+      },
+      {
+        "name": "Mobile App Development",
+        "icon": "FaMobileAlt"
+      },
+      {
+        "name": "GPS Integration",
+        "icon": "FaMapMarkedAlt"
+      }
     ]
   },
   {
     "Database": [
-      "PostgreSQL",
-      "MongoDB",
-      "MySQL",
-      "Redis"
+      {
+        "name": "PostgreSQL",
+        "icon": "SiPostgresql"
+      },
+      {
+        "name": "MongoDB",
+        "icon": "SiMongodb"
+      },
+      {
+        "name": "MySQL",
+        "icon": "SiMysql"
+      },
+      {
+        "name": "Redis",
+        "icon": "SiRedis"
+      }
     ]
   },
   {
     "Tools": [
-      "Linux",
-      "Git",
-      "Nmap",
-      "Docker",
-      "VS Code"
+      {
+        "name": "Linux",
+        "icon": "FaLinux"
+      },
+      {
+        "name": "Git",
+        "icon": "FaGithub"
+      },
+      {
+        "name": "Docker",
+        "icon": "SiDocker"
+      },
+      {
+        "name": "VS Code",
+        "icon": "VscVscode"
+      }
     ]
   }
 ]

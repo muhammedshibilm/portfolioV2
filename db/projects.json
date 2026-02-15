@@ -1,50 +1,14 @@
 [
-    {
-        "title": "FakeAPI Engine",
-        "description": "A high-performance mock data generator built with Django, providing robust endpoints for testing and development environments.",
-        "tags": [
-            "Python",
-            "Django",
-            "REST API",
-            "Backend"
-        ],
-        "link": "https://github.com/muhammedshibilm/fakeapi",
-        "image": "/projects/api.jpg"
-    },
-    {
-        "title": "Speedometer Mobile",
-        "description": "A real-time speed tracking mobile application developed with Flutter, featuring precise GPS-based velocity mapping and a sleek UI.",
-        "tags": [
-            "Flutter",
-            "Dart",
-            "Mobile",
-            "GPS"
-        ],
-        "link": "https://github.com/muhammedshibilm/speedometer-apk",
-        "image": "/projects/speed.jpg"
-    },
-    {
-        "title": "Auth Prototype",
-        "description": "A secure web-based form demonstration featuring client-side data persistence using LocalStorage and modern CSS architecture.",
-        "tags": [
-            "HTML5",
-            "CSS3",
-            "JavaScript",
-            "LocalStorage"
-        ],
-        "link": "https://github.com/muhammedshibilm/loginform.com",
-        "image": "/projects/auth.jpg"
-    },
-    {
-        "title": "Webhook Handler",
-        "description": "An event-driven architectural study for handling incoming webhooks with high reliability and scalable processing patterns.",
-        "tags": [
-            "Node.js",
-            "Events",
-            "Webhooks",
-            "Architect"
-        ],
-        "link": "https://github.com/muhammedshibilm/webhook",
-        "image": "/projects/webhook.jpg"
-    }
+  {
+    "title": "Speedometer Mobile",
+    "description": "A real-time speed tracking mobile application developed with Flutter, featuring precise GPS-based velocity mapping and a sleek UI.",
+    "tags": [
+      "Flutter",
+      "Dart",
+      "Mobile",
+      "GPS"
+    ],
+    "link": "https://github.com/muhammedshibilm/speedometer-apk",
+    "image": "/projects/speed.jpg"
+  }
 ]

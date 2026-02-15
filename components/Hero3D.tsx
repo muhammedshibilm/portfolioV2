@@ -1,29 +1,39 @@
 "use client";
 
-import React, { useRef, useMemo } from "react";
+import React, { useRef, useMemo, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Sphere, MeshDistortMaterial, PerspectiveCamera } from "@react-three/drei";
 import * as THREE from "three";
 
 function RotatingShape() {
     const meshRef = useRef<THREE.Mesh>(null!);
+    const mouse = useRef({ x: 0, y: 0 });
+
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
+        };
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, []);
 
     useFrame((state) => {
         const time = state.clock.getElapsedTime();
-        meshRef.current.rotation.x = time * 0.2;
-        meshRef.current.rotation.y = time * 0.3;
+        meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, time * 0.2 + mouse.current.y * 0.5, 0.1);
+        meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, time * 0.3 + mouse.current.x * 0.5, 0.1);
     });
 
     return (
         <Float speed={2} rotationIntensity={1.5} floatIntensity={2}>
-            <Sphere ref={meshRef} args={[1, 64, 64]}>
+            <Sphere ref={meshRef} args={[1.2, 64, 64]}>
                 <MeshDistortMaterial
                     color="#8a9064"
                     attach="material"
-                    distort={0.4}
+                    distort={0.45}
                     speed={2}
-                    roughness={0.2}
-                    metalness={0.8}
+                    roughness={0.1}
+                    metalness={0.9}
                 />
             </Sphere>
         </Float>

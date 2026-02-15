@@ -9,6 +9,7 @@ import { ArrowDownRight, Github, Linkedin, Mail } from "lucide-react";
 import exploredata from "../db/exploredata.json";
 import Navbar from "../components/Navbar";
 import Hero3D from "../components/Hero3D";
+import FloatingShapes from "../components/FloatingShapes";
 import gsap from "gsap";
 
 export default function Page() {
@@ -126,49 +127,52 @@ export default function Page() {
       </section>
 
       {/* Explore Section */}
-      <section className="py-32 px-6 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-          <div>
-            <h2 className="text-oliveGreen text-sm font-bold uppercase tracking-widest mb-4 flex items-center gap-2">
-              <span className="w-8 h-[1px] bg-oliveGreen"></span> Selection
-            </h2>
-            <h3 className="text-4xl md:text-6xl font-bold tracking-tighter">
-              Explore my <br /> Work & Journey.
-            </h3>
+      <section className="relative py-32 px-6 max-w-7xl mx-auto overflow-hidden">
+        <FloatingShapes />
+        <div className="relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+            <div>
+              <h2 className="text-oliveGreen text-sm font-bold uppercase tracking-widest mb-4 flex items-center gap-2">
+                <span className="w-8 h-[1px] bg-oliveGreen"></span> Selection
+              </h2>
+              <h3 className="text-4xl md:text-6xl font-bold tracking-tighter">
+                Explore my <br /> Work & Journey.
+              </h3>
+            </div>
+            <p className="text-beige/50 max-w-sm text-right">
+              A curated selection of my professional experience, skills, and personal projects.
+            </p>
           </div>
-          <p className="text-beige/50 max-w-sm text-right">
-            A curated selection of my professional experience, skills, and personal projects.
-          </p>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {exploredata.map((item, index) => (
-            <Link key={index} href={item.href} className="group">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="relative h-[400px] overflow-hidden rounded-3xl glass-card flex flex-col justify-end p-10"
-              >
-                <div className="absolute top-10 right-10 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0">
-                  <ArrowDownRight size={40} className="text-oliveGreen" />
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {exploredata.map((item, index) => (
+              <Link key={index} href={item.href} className="group">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="relative h-[400px] overflow-hidden rounded-3xl glass-card flex flex-col justify-end p-10"
+                >
+                  <div className="absolute top-10 right-10 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0">
+                    <ArrowDownRight size={40} className="text-oliveGreen" />
+                  </div>
 
-                <h4 className="text-5xl font-bold tracking-tighter mb-4 group-hover:text-oliveGreen transition-colors duration-500">
-                  {item.name}
-                </h4>
-                <p className="text-beige/60 text-lg leading-relaxed max-w-xs transition-colors duration-500 group-hover:text-beige">
-                  {item.description}
-                </p>
+                  <h4 className="text-5xl font-bold tracking-tighter mb-4 group-hover:text-oliveGreen transition-colors duration-500">
+                    {item.name}
+                  </h4>
+                  <p className="text-beige/60 text-lg leading-relaxed max-w-xs transition-colors duration-500 group-hover:text-beige">
+                    {item.description}
+                  </p>
 
-                <div className="mt-8 flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-oliveGreen">
-                  <span>View Details</span>
-                  <div className="w-12 h-[1px] bg-oliveGreen group-hover:w-20 transition-all duration-500" />
-                </div>
-              </motion.div>
-            </Link>
-          ))}
+                  <div className="mt-8 flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-oliveGreen">
+                    <span>View Details</span>
+                    <div className="w-12 h-[1px] bg-oliveGreen group-hover:w-20 transition-all duration-500" />
+                  </div>
+                </motion.div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
