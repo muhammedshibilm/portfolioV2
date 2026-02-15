@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
-import profile from "../public/profile.jpg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { ArrowDownRight, Github, Linkedin, Mail } from "lucide-react";
@@ -40,33 +38,39 @@ export default function Page() {
 
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.9]);
+  const heroDepth = useTransform(scrollYProgress, [0, 0.35], [0, -160]);
+  const heroTiltX = useTransform(scrollYProgress, [0, 0.35], [0, 8]);
+  const heroTiltY = useTransform(scrollYProgress, [0, 0.35], [0, -6]);
 
   return (
     <div ref={containerRef} className="relative min-h-screen">
       <Navbar />
-      <Hero3D />
+      <motion.div className="hero-3d" style={{ y: heroDepth }}>
+        <motion.div
+          className="hero-3d-layer"
+          style={{ rotateX: heroTiltX, rotateY: heroTiltY }}
+        >
+          <Hero3D />
+        </motion.div>
+      </motion.div>
 
       {/* Hero Section */}
       <section className="relative h-screen flex flex-col justify-center items-center px-6 overflow-hidden">
+        <FloatingShapes />
         <motion.div
           style={{ opacity, scale }}
           ref={heroTextRef}
           className="text-center z-10 space-y-6"
         >
           <div className="flex justify-center mb-8">
-            <motion.div
+            {/* <motion.div
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ type: "spring", damping: 15, delay: 0.2 }}
               className="relative w-32 h-32 md:w-40 md:h-40 p-1 rounded-full border border-oliveGreen/30 glass"
             >
-              <Image
-                src={profile}
-                alt="Shibil M"
-                fill
-                className="rounded-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-              />
-            </motion.div>
+              
+            </motion.div> */}
           </div>
 
           <div className="overflow-hidden">
@@ -152,7 +156,7 @@ export default function Page() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="relative h-[400px] overflow-hidden rounded-3xl glass-card flex flex-col justify-end p-10"
+                  className="relative h-[400px] overflow-hidden rounded-3xl glass-card card-3d flex flex-col justify-end p-10"
                 >
                   <div className="absolute top-10 right-10 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0">
                     <ArrowDownRight size={40} className="text-oliveGreen" />

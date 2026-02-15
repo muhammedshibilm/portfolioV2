@@ -80,7 +80,7 @@ export default function Page() {
                                 <motion.div
                                     key={index}
                                     whileHover={{ y: -10 }}
-                                    className="proj-card group relative h-[500px] rounded-[2.5rem] overflow-hidden glass border border-white/5"
+                                    className="proj-card group relative h-[500px] rounded-[2.5rem] overflow-hidden glass card-3d border border-white/5"
                                 >
                                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background/90 z-10" />
 

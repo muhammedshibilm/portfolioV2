@@ -54,11 +54,11 @@ export default function Page() {
               </p>
             </div>
             <div className="space-y-4">
-              <div className="about-text glass p-6 rounded-2xl border border-white/5">
+              <div className="about-text glass card-3d p-6 rounded-2xl border border-white/5">
                 <span className="text-xs uppercase tracking-widest text-oliveGreen font-bold block mb-2">Location</span>
                 <span className="text-lg font-medium">Kerala, India</span>
               </div>
-              <div className="about-text glass p-6 rounded-2xl border border-white/5">
+              <div className="about-text glass card-3d p-6 rounded-2xl border border-white/5">
                 <span className="text-xs uppercase tracking-widest text-oliveGreen font-bold block mb-2">Focus</span>
                 <span className="text-lg font-medium">Architecture & UI</span>
               </div>

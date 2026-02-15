@@ -54,7 +54,7 @@ export default function Tools() {
             viewport={{ once: true }}
             whileHover={{ y: -5 }}
             transition={{ delay: index * 0.05 }}
-            className="glass-card p-6 flex flex-col items-center gap-3 text-center group"
+            className="glass-card card-3d p-6 flex flex-col items-center gap-3 text-center group"
           >
             <div className="text-4xl text-beige/40 group-hover:text-oliveGreen transition-colors duration-300">
               {tool.icon}

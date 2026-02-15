@@ -43,7 +43,7 @@ export default function Service() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.05 }}
-            className="glass p-6 rounded-2xl border border-white/5 flex items-center gap-4 group hover:border-oliveGreen/30 transition-colors"
+            className="glass card-3d p-6 rounded-2xl border border-white/5 flex items-center gap-4 group hover:border-oliveGreen/30 transition-colors"
           >
             <div className="w-10 h-10 rounded-full bg-oliveGreen/10 flex items-center justify-center group-hover:bg-oliveGreen/20 transition-colors">
               <Check className="text-oliveGreen" size={20} />

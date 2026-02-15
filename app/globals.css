@@ -62,6 +62,21 @@ body {
   box-shadow: 0 12px 40px 0 rgba(138, 144, 100, 0.15);
 }
 
+/* 3D Card Effect */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    box-shadow 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform, box-shadow;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-3d:hover {
+    transform: perspective(1200px) rotateX(6deg) rotateY(-6deg) translateY(-10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  }
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -99,4 +114,13 @@ body {
     radial-gradient(at 100% 0%, rgba(41, 35, 19, 0.2) 0px, transparent 50%),
     radial-gradient(at 100% 100%, rgba(var(--accent), 0.1) 0px, transparent 50%),
     radial-gradient(at 0% 100%, rgba(38, 32, 32, 0.2) 0px, transparent 50%);
+}
+
+/* Hero 3D scroll depth */
+.hero-3d {
+  perspective: 1200px;
+}
+
+.hero-3d-layer {
+  transform-style: preserve-3d;
 }

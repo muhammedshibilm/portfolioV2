@@ -28,7 +28,7 @@ export default function Cards() {
                     className="group"
                 >
                     <Link href={item.url} target="_blank">
-                        <div className="glass-card p-8 rounded-[2rem] flex flex-col gap-6 relative overflow-hidden h-full">
+                        <div className="glass-card card-3d p-8 rounded-[2rem] flex flex-col gap-6 relative overflow-hidden h-full">
                             {/* Decoration */}
                             <div className="absolute top-0 right-0 w-32 h-32 bg-oliveGreen/5 blur-3xl rounded-full group-hover:bg-oliveGreen/10 transition-all duration-500" />
 

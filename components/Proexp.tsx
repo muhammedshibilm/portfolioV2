@@ -59,7 +59,7 @@ const Proexp = () => {
             </div>
           </div>
 
-          <div className="glass-card p-8 rounded-3xl border border-white/5 space-y-6">
+          <div className="glass-card card-3d p-8 rounded-3xl border border-white/5 space-y-6">
             <ul className="space-y-4">
               {item.descriptions.map((desc, i) => (
                 <li key={i} className="flex gap-3 text-beige/70 leading-relaxed">
